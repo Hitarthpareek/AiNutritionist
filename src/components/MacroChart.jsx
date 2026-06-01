@@ -16,7 +16,7 @@ const COLORS = ["#22c55e", "#3b82f6", "#f59e0b"];
 
 export default function MacroChart({ data }) {
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6 h-[400px]">
+    <div className="bg-[url('https://img.freepik.com/free-psd/fast-food-frame-illustration_23-2151793855.jpg?semt=ais_hybrid&w=740&q=80')] bg-cover bg-center bg-no-repeat rounded-xl shadow-sm border p-6 h-[400px]">
       <h3 className="text-xl font-semibold mb-4">
         Macronutrient Distribution
       </h3>

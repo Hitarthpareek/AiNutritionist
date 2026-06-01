@@ -12,9 +12,9 @@ function ProgressBar({ label, current, goal, unit = "" }) {
   return (
     <div className="mb-6">
       <div className="flex justify-between mb-2">
-        <span className="font-medium">{label}</span>
+        <span className="font-medium text-white">{label}</span>
 
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-white">
           {current}
           {unit} / {goal}
           {unit}
@@ -23,14 +23,14 @@ function ProgressBar({ label, current, goal, unit = "" }) {
 
       <div className="w-full bg-gray-200 rounded-full h-3">
         <div
-          className="h-3 bg-green-500 rounded-full transition-all"
+          className="h-3 bg-green-500 rounded-full transition-all "
           style={{
             width: `${percentage}%`,
           }}
         />
       </div>
 
-      <p className="text-xs text-gray-500 mt-1">
+      <p className="text-xs text-gray-500 mt-1 text-white">
         {percentage}% completed
       </p>
     </div>
@@ -89,9 +89,9 @@ export default function GoalProgress({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6">
+    <div className="bg-[url('https://static.vecteezy.com/system/resources/thumbnails/072/205/837/small/business-figure-trophy-spotlight-podium-photo.jpeg')] bg-cover bg-center bg-no-repeat mt-8 rounded-xl shadow-sm p-6">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-semibold">
+        <h3 className="text-xl font-semibold text-white">
           Daily Goals
         </h3>
 

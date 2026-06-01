@@ -34,7 +34,7 @@ export default function Navbar() {
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
 
-        <h1 className="font-bold text-green-600 text-lg md:text-xl">
+        <h1 className="font-bold text-green-600 text-lg md:text-xl ml-5">
           AI Nutrition
         </h1>
       </div>

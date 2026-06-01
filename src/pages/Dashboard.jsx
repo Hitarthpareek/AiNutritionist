@@ -169,8 +169,8 @@ export default function Dashboard() {
             <div
               className={
                 blink
-                  ? "animate-pulse bg-gradient-to-br from-red-400 to-emerald-500 text-white rounded-2xl shadow-lg border border-green-300 p-6 transition-all duration-300"
-                  : "bg-gradient-to-r from-red-400 to-emerald-500 w-full text-white hover:shadow-xl hover:scale-[1.01] transition-all duration-300 rounded-2xl border border-gray-100 p-6"
+                  ? "animate-pulse bg-gradient-to-br from-black to-emerald-500 text-white rounded-2xl shadow-lg border border-green-300 p-6 transition-all duration-300"
+                  : "bg-gradient-to-r from-black to-emerald-500 w-full text-white hover:shadow-xl hover:scale-[1.01] transition-all duration-300 rounded-2xl border border-gray-100 p-6"
               }
             >
               <h3 className="text-xl font-semibold mb-4">AI Recommendations</h3>
