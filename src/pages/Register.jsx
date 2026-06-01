@@ -3,6 +3,7 @@ import { auth, db } from "../services/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -36,7 +37,7 @@ export default function Register() {
 
       navigate("/");
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 

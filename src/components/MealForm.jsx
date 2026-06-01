@@ -3,6 +3,7 @@ import { analyzeMeal } from "../services/aiService";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function MealForm() {
   const [meal, setMeal] = useState("");
@@ -26,12 +27,12 @@ export default function MealForm() {
         createdAt: serverTimestamp(),
       });
       setMeal("");
-      alert("Meal analyzed successfully");
+      toast.success("Meal analyzed successfully");
       
 
     } catch (error) {
       console.error(error);
-      alert("Something went wrong");
+      toast.error("Something went wrong");
 
     } finally {
       setLoading(false);

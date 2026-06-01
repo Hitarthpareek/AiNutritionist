@@ -6,9 +6,10 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useEffect, useState, useMemo } from "react";
 import Navbar from "../components/Navbar";
+import toast from "react-hot-toast";
 
 export default function Profile() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const [profile, setProfile] = useState(null);
 
   const meals = useDashboardData(user?.uid);
@@ -102,7 +103,7 @@ export default function Profile() {
     try {
       await resetAccount(user.uid);
 
-      alert(
+      toast.success(
         "Nutrition data deleted successfully."
       );
 
@@ -110,7 +111,7 @@ export default function Profile() {
     } catch (error) {
       console.error(error);
 
-      alert(
+      toast.error(
         "Failed to reset account data."
       );
     }
@@ -274,22 +275,6 @@ export default function Profile() {
 
         </div>
 
-        {/* Logout */}
-
-        <div className="bg-white rounded-xl shadow p-6">
-
-          <h2 className="text-xl font-semibold mb-4">
-            Session
-          </h2>
-
-          <button
-            onClick={logout}
-            className="bg-gray-800 hover:bg-black text-white px-6 py-3 rounded-lg"
-          >
-            Logout
-          </button>
-
-        </div>
 
       </div>
     </div>

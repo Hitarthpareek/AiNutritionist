@@ -2,6 +2,7 @@ import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 function ProgressBar({ label, current, goal, unit = "" }) {
   const percentage = goal
@@ -83,7 +84,7 @@ export default function GoalProgress({
       setEditing(false);
     } catch (error) {
       console.error(error);
-      alert("Failed to save goals");
+      toast.error("Failed to save goals");
     }
   };
 

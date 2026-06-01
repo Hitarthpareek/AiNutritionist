@@ -8,10 +8,17 @@ import Reports from "./pages/Reports";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import PublicRoute from "./components/PublicRoute.jsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <BrowserRouter>
+    <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
       <Routes>
         <Route
           path="/"

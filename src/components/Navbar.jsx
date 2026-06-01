@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { useNavigate, NavLink } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -11,6 +12,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     await signOut(auth);
     navigate("/login");
+    toast.success("successfully logged out");
   };
 
   const linkClass = ({ isActive }) =>

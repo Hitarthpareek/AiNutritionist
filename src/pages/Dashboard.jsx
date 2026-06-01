@@ -177,7 +177,7 @@ export default function Dashboard() {
 
               {meals.length === 0 ? (
                 <div className="flex items-center justify-center h-40 text-center">
-                  <p className="text-gray-500">
+                  <p className="text-white-500">
                     Analyze a meal to start receiving AI recommendations.
                   </p>
                 </div>
