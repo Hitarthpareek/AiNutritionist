@@ -13,8 +13,8 @@ import { useState, useEffect } from "react";
 
 export default function Dashboard() {
   const { user } = useAuth();
-  const meals = useDashboardData(user?.uid);
-  const latestMeal = meals[0];
+  const [meals,setMeals]=useState([]);
+  const [latestMeal,setLatestMeal] = useState({})
   const [goals, setGoals] = useState(null);
   const [blink, setBlink] = useState(false);
 
@@ -27,6 +27,12 @@ export default function Dashboard() {
 
     return () => clearTimeout(timer);
   }, [meals]);
+
+  useEffect(()=>{
+    const fetchedMeals = useDashboardData(user?.uid);
+    setMeals(fetchMeals);
+    setLatestMeal(fetchedMeals[0]);
+  })
 
   const today = new Date();
 
