@@ -115,7 +115,7 @@ export default function GoalProgress({
       {editing && (
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="block mb-2 text-sm font-medium">
+            <label className="text-white block mb-2 text-sm font-medium">
               Daily Calorie Goal
             </label>
 
@@ -125,12 +125,12 @@ export default function GoalProgress({
               onChange={(e) =>
                 setCalorieGoal(e.target.value)
               }
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 bg-white"
             />
           </div>
 
           <div>
-            <label className="block mb-2 text-sm font-medium">
+            <label className="text-white block mb-2 text-sm font-medium">
               Daily Protein Goal (g)
             </label>
 
@@ -140,7 +140,7 @@ export default function GoalProgress({
               onChange={(e) =>
                 setProteinGoal(e.target.value)
               }
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 bg-white"
             />
           </div>
         </div>
