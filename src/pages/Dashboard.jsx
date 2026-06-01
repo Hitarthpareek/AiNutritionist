@@ -223,7 +223,7 @@ export default function Dashboard() {
             )}
           </div>
 
-          <div className="mt-6">
+          <div className="mt-1">
             <GoalProgress
               calories={caloriesConsumed}
               protein={proteinConsumed}
