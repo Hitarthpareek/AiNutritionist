@@ -19,7 +19,7 @@ export default function Register() {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
 
       const user = userCredential.user;
@@ -43,9 +43,7 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-white to-emerald-200 px-4">
-
       <div className="w-full max-w-4xl grid md:grid-cols-2 bg-white shadow-2xl rounded-2xl overflow-hidden">
-
         {/* LEFT INFO SECTION */}
         <div className="hidden md:flex flex-col justify-center p-10 bg-gradient-to-br from-emerald-600 to-green-500 text-white">
           <h1 className="text-3xl font-bold mb-4">
@@ -67,6 +65,16 @@ export default function Register() {
 
         {/* RIGHT FORM SECTION */}
         <div className="p-8 md:p-10">
+          {/* Mobile Logo/Heading */}
+          <div className="md:hidden text-center mb-6">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
+              AI Nutrition Tracker 🍏
+            </h1>
+
+            <p className="text-gray-500 text-sm mt-2">
+              Smart AI-powered nutrition analysis
+            </p>
+          </div>
 
           <h2 className="text-2xl font-bold mb-2 text-gray-800">
             Create Account
@@ -77,7 +85,6 @@ export default function Register() {
           </p>
 
           <form onSubmit={registerUser}>
-
             <input
               type="text"
               placeholder="Full Name"
@@ -117,7 +124,6 @@ export default function Register() {
           >
             Already have an account? Login
           </button>
-
         </div>
       </div>
     </div>

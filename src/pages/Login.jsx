@@ -115,6 +115,16 @@ export default function Login() {
 
         {/* RIGHT LOGIN SECTION */}
         <div className="p-8 md:p-10">
+          {/* Mobile Logo/Heading */}
+          <div className="md:hidden text-center mb-6">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
+              AI Nutrition Tracker 🍏
+            </h1>
+
+            <p className="text-gray-500 text-sm mt-2">
+              Smart AI-powered nutrition analysis
+            </p>
+          </div>
           <h2 className="text-2xl font-bold mb-2 text-gray-800">
             {forgotPassword ? "Reset Password" : "Welcome Back"}
           </h2>
