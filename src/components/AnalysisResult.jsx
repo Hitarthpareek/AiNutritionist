@@ -5,7 +5,7 @@ export default function AnalysisResult({meal}) {
   if (!meal) return null;
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6" id="analysisResult">
+    <div className="bg-white rounded-xl shadow-sm border p-10 mt-8 " id="analysisResult">
       <h3 className="text-xl font-semibold mb-4">
         Latest Analysis
       </h3>

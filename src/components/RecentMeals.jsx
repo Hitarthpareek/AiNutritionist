@@ -1,6 +1,6 @@
 export default function RecentMeals({ meals }) {
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6">
+    <div className="bg-white rounded-xl shadow-sm border p-6 mt-8">
       <h3 className="text-xl font-semibold mb-4">Recent Meals</h3>
 
       <div className="overflow-x-auto">

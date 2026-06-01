@@ -2,9 +2,12 @@ export default function StatsCard({
   title,
   value,
   subtitle,
+  background
 }) {
+  
   return (
-    <div className="bg-white rounded-xl shadow-sm p-5 border">
+    
+    <div style={{ '--dynamic-bg': `url(${background})` }}  className="h-40 w-full bg-[image:var(--dynamic-bg)] bg-cover bg-center rounded-xl shadow-sm p-5 border">
       <h3 className="text-gray-500 text-sm">
         {title}
       </h3>

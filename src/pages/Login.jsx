@@ -3,17 +3,43 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
 import Register from "./Register";
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
+const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  const resetPassword = async () => {
+  if (!email.trim()) {
+    alert("Please enter your email");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    await sendPasswordResetEmail(auth, email);
+
+    setMessage(
+      "Password reset link has been sent to your email. check spam"
+    );
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    setLoading(false);
+    setForgotPassword(false);
+  }
+};
 
   const login = async (e) => {
     e.preventDefault();
@@ -55,6 +81,7 @@ export default function Login() {
       }
 
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -84,55 +111,104 @@ export default function Login() {
         </div>
 
         {/* RIGHT LOGIN SECTION */}
-        <div className="p-8 md:p-10">
-          <h2 className="text-2xl font-bold mb-2 text-gray-800">
-            Welcome Back
-          </h2>
+         <div className="p-8 md:p-10">
+  <h2 className="text-2xl font-bold mb-2 text-gray-800">
+    {forgotPassword ? "Reset Password" : "Welcome Back"}
+  </h2>
 
-          <p className="text-sm text-gray-500 mb-6">
-            Login to continue tracking your nutrition journey
-          </p>
+  <p className="text-sm text-gray-500 mb-6">
+    {forgotPassword
+      ? "Enter your email and we'll send a reset link."
+      : "Login to continue tracking your nutrition journey"}
+  </p>
 
-          <form onSubmit={login}>
-            <input
-              className="w-full border p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+  {message && (
+    <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg border border-green-300">
+      {message}
+    </div>
+  )}
 
-            <input
-              type="password"
-              className="w-full border p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+  {!forgotPassword ? (
+    <>
+      <form onSubmit={login}>
+        <input
+          className="w-full border p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-            <button
-              disabled={loading}
-              className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white p-3 rounded-lg transition transform hover:scale-[1.02] disabled:scale-100"
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
+        <input
+          type="password"
+          className="w-full border p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          <button
-            onClick={googleLogin}
-            disabled={loading}
-            className="w-full mt-3 border p-3 rounded-lg hover:bg-gray-50 transition disabled:opacity-50"
-          >
-            {loading ? "Please wait..." : "Continue with Google"}
-          </button>
+        <button
+          disabled={loading}
+          className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white p-3 rounded-lg transition"
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
 
-          {/* SIGNUP BUTTON */}
-          <button
-            onClick={() => navigate("/register")}
-            className="w-full mt-3 text-green-600 font-medium hover:underline"
-          >
-            Sign up with Email ?
-          </button>
-        </div>
+      <button
+        onClick={googleLogin}
+        disabled={loading}
+        className="w-full mt-3 border p-3 rounded-lg hover:bg-gray-50 transition disabled:opacity-50"
+      >
+        {loading ? "Please wait..." : "Continue with Google"}
+      </button>
+
+      <button
+        onClick={() => {
+          setForgotPassword(true);
+          setMessage("");
+        }}
+        className="w-full mt-4 text-sm text-green-600 hover:underline"
+      >
+        Forgot Password?
+      </button>
+
+      <button
+        onClick={() => navigate("/register")}
+        className="w-full mt-3 text-green-600 font-medium hover:underline"
+      >
+        Sign up with Email?
+      </button>
+    </>
+  ) : (
+    <>
+      <input
+        type="email"
+        className="w-full border p-3 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <button
+        onClick={resetPassword}
+        disabled={loading}
+        className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white p-3 rounded-lg transition"
+      >
+        {loading ? "Sending..." : "Send Reset Link"}
+      </button>
+
+      <button
+        onClick={() => {
+          setForgotPassword(false);
+          setMessage("");
+        }}
+        className="w-full mt-4 text-green-600 hover:underline"
+      >
+        Back to Login
+      </button>
+    </>
+  )}
+</div>
       </div>
     </div>
   );
